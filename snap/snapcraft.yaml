@@ -1,0 +1,37 @@
+name: wazuh-agent # you probably want to 'snapcraft register <name>'
+base: core24 # the base snap is the execution environment for this snap
+version: '1.0' # just for humans, typically '1.2+git' or '1.3.2'
+summary: Wazuh Agent for Ubuntu 24.04 LTS # 79 char long summary
+description: |
+  Wazuh Agent for Ubuntu 24.04 LTS
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+apps:
+  wazuh-agent-snap:
+    # command: sudo dpkg -i wazuh-agent_4.8.0-1_amd64.deb
+    # command: sudo systemctl daemon-reload; sudo systemctl enable wazuh-agent; sudo systemctl start wazuh-agent
+    # wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.8.0-1_amd64.deb && sudo WAZUH_MANAGER='yah649a5h1ce.cloud.wazuh.com' WAZUH_REGISTRATION_PASSWORD=$'SSjM8clW6bh6UMGlhgKT6KaXVeAHjbWI' dpkg -i ./wazuh-agent_4.8.0-1_amd64.deb
+    # command-chain: ["sudo systemctl deamon-reload", "sudo systemctl enable wazuh-agent"]
+    # command: sudo systemctl start wazuh-agent
+    # command: var/ossec/bin/wazuh-control start
+    command: bin/setup.sh
+    daemon: simple
+    restart-condition: always  
+    plugs: [snapd-control]  
+    # environment:
+
+
+parts:
+  wazuh-agent:
+    # See 'snapcraft plugins'
+    plugin: dump
+    source-type: deb
+    source: wazuh-agent_4.8.0-1_amd64.deb
+    # source: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.8.0-1_amd64.deb
+  setup:
+    plugin: dump
+    source: .
+    organize:
+      setup.sh: bin/setup.sh

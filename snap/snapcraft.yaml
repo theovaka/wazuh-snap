@@ -9,12 +9,12 @@ grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
 
 apps:
-  wazuh-agent-snap:
-    # command: sudo dpkg -i wazuh-agent_4.8.0-1_amd64.deb
+  wazuh-agent:
     # command: sudo systemctl daemon-reload; sudo systemctl enable wazuh-agent; sudo systemctl start wazuh-agent
-    # wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.8.0-1_amd64.deb && sudo WAZUH_MANAGER='yah649a5h1ce.cloud.wazuh.com' WAZUH_REGISTRATION_PASSWORD=$'SSjM8clW6bh6UMGlhgKT6KaXVeAHjbWI' dpkg -i ./wazuh-agent_4.8.0-1_amd64.deb
     # command-chain: ["sudo systemctl deamon-reload", "sudo systemctl enable wazuh-agent"]
-    # command: sudo systemctl start wazuh-agent
+    # Agent Command Line
+    # wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.8.0-1_amd64.deb && sudo WAZUH_MANAGER='yah649a5h1ce.cloud.wazuh.com' WAZUH_REGISTRATION_PASSWORD=$'<PASSWORD>' dpkg -i ./wazuh-agent_4.8.0-1_amd64.deb
+    
     # command: var/ossec/bin/wazuh-control start
     command: bin/setup.sh
     daemon: simple

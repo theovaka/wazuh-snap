@@ -1,0 +1,34 @@
+#!/bin/sh
+
+DEFAULT_WAZUH_MANAGER="yah649a5h1ce.cloud.wazuh.com"
+DEFAULT_WAZUH_REGISTRATION_PASSWORD="default_password"
+
+wazuh_manager()
+{
+        manager="$(snapctl get WAZUH_MANAGER)"
+        if [ -z "$manager" ]; then
+                manager="$DEFAULT_WAZUH_MANAGER"
+                set_http_port $manager
+        fi
+        echo "$manager"
+}
+
+set_wazuh_manager()
+{
+        snapctl set WAZUH_MANAGER="$1"
+}
+
+wazuh_registration_password()
+{
+        password="$(snapctl get WAZUH_REGISTRATION_PASSWORD)"
+        if [ -z "$password" ]; then
+                password="$DEFAULT_WAZUH_REGISTRATION_PASSWORD"
+                set_http_port $password
+        fi
+        echo "$password"
+}
+
+set_wazuh_registration_password()
+{
+        snapctl set WAZUH_REGISTRATION_PASSWORD="$1"
+}

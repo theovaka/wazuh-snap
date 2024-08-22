@@ -16,11 +16,22 @@ apps:
     # wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.8.0-1_amd64.deb && sudo WAZUH_MANAGER='yah649a5h1ce.cloud.wazuh.com' WAZUH_REGISTRATION_PASSWORD=$'<PASSWORD>' dpkg -i ./wazuh-agent_4.8.0-1_amd64.deb
     
     # command: var/ossec/bin/wazuh-control start
-    command: bin/setup.sh
+    # command: bin/setup.sh
+    command: bin/wazuh-agent-wrapper
     daemon: simple
     restart-condition: always  
     plugs: [snapd-control]  
     # environment:
+
+  hooks:
+    plugin: dump
+    source: src/hooks/
+    organize:
+         bin/: snap/hooks/
+
+  scripts:
+    plugin: dump
+    source: src/utilities
 
 
 parts:
@@ -30,8 +41,8 @@ parts:
     source-type: deb
     source: wazuh-agent_4.8.0-1_amd64.deb
     # source: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.8.0-1_amd64.deb
-  setup:
-    plugin: dump
-    source: .
-    organize:
-      setup.sh: bin/setup.sh
+  # setup:
+  #   plugin: dump
+  #   source: .
+  #   organize:
+  #     setup.sh: bin/setup.sh

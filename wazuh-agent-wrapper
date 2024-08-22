@@ -1,0 +1,11 @@
+#!/bin/sh
+# source the management script
+. "$SNAP/bin/management-script"
+
+# call the http_port function from the management script
+WAZUH_MANAGER="$(wazuh_manager)"
+WAZUH_REGISTRATION_PASSWORD="$(wazuh_registration_password)"
+export WAZUH_MANAGER
+export WAZUH_REGISTRATION_PASSWORD
+
+"var/ossec/bin/wazuh-control start"

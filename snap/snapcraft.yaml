@@ -17,21 +17,11 @@ apps:
     
     # command: var/ossec/bin/wazuh-control start
     # command: bin/setup.sh
-    command: bin/wazuh-agent-wrapper
+    command: wazuh-agent-wrapper
     daemon: simple
     restart-condition: always  
     plugs: [snapd-control]  
     # environment:
-
-  hooks:
-    plugin: dump
-    source: src/hooks/
-    organize:
-         bin/: snap/hooks/
-
-  scripts:
-    plugin: dump
-    source: src/utilities
 
 
 parts:
@@ -41,6 +31,35 @@ parts:
     source-type: deb
     source: wazuh-agent_4.8.0-1_amd64.deb
     # source: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.8.0-1_amd64.deb
+
+  hooks:
+    plugin: dump
+    # source: src/hooks/
+    source: meta/hooks/
+    source-type: local
+    organize:
+         bin/: snap/hooks/
+
+  scripts:
+    plugin: dump
+    # source: src/utilities
+    source: utilities/
+    source-type: local
+
+  # configure-hook:
+  #   plugin: dump
+  #   source: configure
+  #   source-type: local
+  #   organize:
+  #       configure: snap/hooks/configure
+
+  # default-configure-hook:
+  #   plugin: dump
+  #   source: default-configure
+  #   source-type: local
+  #   organize:
+  #       configure: snap/hooks/default-configure
+
   # setup:
   #   plugin: dump
   #   source: .

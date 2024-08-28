@@ -1,27 +1,24 @@
 #!/bin/sh
 
-
-# source the management script
-# ls -d -- */
-# echo "$SNAP"
-
 # FIND=$(echo *)
 
 # echo "The contents of . are: $FIND"
 
-# FIND=$(cd $SNAP; echo *)
-
-# echo "The contents of SNAP are: $FIND"
+FIND=$(cd $SNAP; echo *)
+echo "The contents of SNAP are: $FIND"
 
 . "$SNAP/management-script"
 
 handle_manager_config()
 {
+        echo "Inside handle_manager_config"
         wazuh_manager="$(wazuh_manager)"
 
+        echo "Setting wazuh_manager..."
        # run function from management script
         set_wazuh_manager "$wazuh_manager"
 
+        echo "Restarting wazuh-agent..."
         # Restart example-server to apply new config
         snapctl restart wazuh-agent
 }

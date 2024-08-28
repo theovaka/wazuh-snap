@@ -8,13 +8,14 @@ wazuh_manager()
         manager="$(snapctl get WAZUH_MANAGER)"
         if [ -z "$manager" ]; then
                 manager="$DEFAULT_WAZUH_MANAGER"
-                set_http_port $manager
+                set_wazuh_manager $manager
         fi
         echo "$manager"
 }
 
 set_wazuh_manager()
 {
+        echo "Inside set_wazuh_manager with parameter: $1"
         snapctl set WAZUH_MANAGER="$1"
 }
 
@@ -23,12 +24,13 @@ wazuh_registration_password()
         password="$(snapctl get WAZUH_REGISTRATION_PASSWORD)"
         if [ -z "$password" ]; then
                 password="$DEFAULT_WAZUH_REGISTRATION_PASSWORD"
-                set_http_port $password
+                set_wazuh_registration_password $password
         fi
         echo "$password"
 }
 
 set_wazuh_registration_password()
 {
+        echo "Inside set_wazuh_registration_password with parameter: $1"
         snapctl set WAZUH_REGISTRATION_PASSWORD="$1"
 }

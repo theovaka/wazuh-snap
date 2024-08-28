@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# source the management script
+. "$SNAP/utilities/management-script"
+
+handle_manager_config()
+{
+        wazuh_manager="$(wazuh_manager)"
+
+       # run function from management script
+        set_wazuh_manager "$wazuh_manager"
+
+        # Restart example-server to apply new config
+        snapctl restart wazuh-agent
+}
+
+handle_password_config()
+{
+        wazuh_registration_password="$(wazuh_registration_password)"
+
+       # run function from management script
+        set_wazuh_registration_password "$wazuh_registration_password"
+
+        # Restart example-server to apply new config
+        snapctl restart wazuh-agent
+}
+
+handle_manager_config
+handle_password_config

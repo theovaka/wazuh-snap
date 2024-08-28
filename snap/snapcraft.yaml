@@ -34,8 +34,8 @@ parts:
 
   hooks:
     plugin: dump
-    # source: src/hooks/
-    source: meta/hooks/
+    source: snap/hooks/
+    # source: meta/hooks/
     source-type: local
     organize:
          bin/: snap/hooks/
@@ -45,6 +45,8 @@ parts:
     # source: src/utilities
     source: utilities/
     source-type: local
+    organize:
+        bin/: utilities/
 
   # configure-hook:
   #   plugin: dump

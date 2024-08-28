@@ -1,0 +1,23 @@
+#!/bin/sh
+
+DEFAULT_WAZUH_MANAGER="yah649a5h1ce.cloud.wazuh.com"
+DEFAULT_WAZUH_REGISTRATION_PASSWORD="default_password"
+
+gadget_option="$(snapctl get gadget_option)"
+if [ -z "$gadget_option" ]; then
+   gadget_option="$DEFAULT_GADGET_OPTION"
+fi
+
+WAZUH_MANAGER="$(snapctl get WAZUH_MANAGER)"
+if [ -z "$WAZUH_MANAGER" ]; then
+       WAZUH_MANAGER="$DEFAULT_WAZUH_MANAGER"
+fi
+
+WAZUH_REGISTRATION_PASSWORD="$(snapctl get WAZUH_REGISTRATION_PASSWORD)"
+if [ -z "$WAZUH_REGISTRATION_PASSWORD" ]; then
+       WAZUH_REGISTRATION_PASSWORD="$DEFAULT_WAZUH_REGISTRATION_PASSWORD"
+fi
+
+mkdir -m 0600 $SNAP_DATA/options
+echo "option: $WAZUH_MANAGER" > $SNAP_DATA/options/manager
+echo "option: $WAZUH_REGISTRATION_PASSWORD" > $SNAP_DATA/options/password

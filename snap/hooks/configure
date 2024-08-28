@@ -1,7 +1,19 @@
 #!/bin/sh
 
+
 # source the management script
-. "$SNAP/utilities/management-script"
+# ls -d -- */
+# echo "$SNAP"
+
+# FIND=$(echo *)
+
+# echo "The contents of . are: $FIND"
+
+# FIND=$(cd $SNAP; echo *)
+
+# echo "The contents of SNAP are: $FIND"
+
+. "$SNAP/management-script"
 
 handle_manager_config()
 {

@@ -4,8 +4,8 @@
 
 # echo "The contents of . are: $FIND"
 
-# FIND=$(cd $SNAP; echo *)
-# echo "The contents of SNAP are: $FIND"
+FIND=$(cd $SNAP; echo *)
+echo "The contents of SNAP are: $FIND"
 
 . "$SNAP/management-script"
 

@@ -9,5 +9,5 @@ wazuh_registration_password="$(get_wazuh_registration_password)"
 export wazuh_manager
 export wazuh_registration_password
 
-var/ossec/bin/wazuh-control start
+/var/ossec/bin/wazuh-control start
 # "$SNAP/bin/wazuh-control start"

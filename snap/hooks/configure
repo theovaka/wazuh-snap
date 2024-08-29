@@ -12,11 +12,11 @@
 handle_manager_config()
 {
         echo "Inside handle_manager_config"
-        wazuhManager="$(get_wazuh_manager)"
+        manager="$(get_wazuh_manager)"
 
         echo "Setting wazuh_manager..."
        # run function from management script
-        set_wazuh_manager "$wazuhManager"
+        set_wazuh_manager "$manager"
 
         echo "Restarting wazuh-agent..."
         # Restart example-server to apply new config
@@ -25,10 +25,10 @@ handle_manager_config()
 
 handle_password_config()
 {
-        wazuhRegistrationPassword="$(get_wazuh_registration_password)"
+        password="$(get_wazuh_registration_password)"
 
        # run function from management script
-        set_wazuh_registration_password "$wazuhRegistrationPassword"
+        set_wazuh_registration_password "$password"
 
         # Restart example-server to apply new config
         snapctl restart wazuh-agent

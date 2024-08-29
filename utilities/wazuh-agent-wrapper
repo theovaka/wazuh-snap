@@ -3,11 +3,11 @@
 . "$SNAP/management-script"
 
 # Call the function wazuh_manager from the management script
-wazuhManager="$(get_wazuh_manager)"
+manager="$(get_wazuh_manager)"
 # Call the function wazuh_registration_password from the management script
-wazuhRegistrationPassword="$(get_wazuh_registration_password)"
-export wazuhManager
-export wazuhRegistrationPassword
+password="$(get_wazuh_registration_password)"
+export manager
+export password
 
 # var/ossec/bin/wazuh-control start
 "$SNAP/bin/wazuh-control start"

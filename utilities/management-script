@@ -1,13 +1,13 @@
 #!/bin/sh
 
-DEFAULT_WAZUH_MANAGER="yah649a5h1ce.cloud.wazuh.com"
-DEFAULT_WAZUH_REGISTRATION_PASSWORD="default_password"
+default_wazuh_manager="yah649a5h1ce.cloud.wazuh.com"
+default_wazuh_registration_password="default_password"
 
-wazuh_manager()
+get_wazuh_manager()
 {
-        manager="$(snapctl get WAZUH_MANAGER)"
+        manager="$(snapctl get wazuh_manager)"
         if [ -z "$manager" ]; then
-                manager="$DEFAULT_WAZUH_MANAGER"
+                manager="$default_wazuh_manager"
                 set_wazuh_manager $manager
         fi
         echo "$manager"
@@ -16,14 +16,14 @@ wazuh_manager()
 set_wazuh_manager()
 {
         echo "Inside set_wazuh_manager with parameter: $1"
-        snapctl set WAZUH_MANAGER="$1"
+        snapctl set wazuh_manager="$1"
 }
 
-wazuh_registration_password()
+get_wazuh_registration_password()
 {
-        password="$(snapctl get WAZUH_REGISTRATION_PASSWORD)"
+        password="$(snapctl get wazuh_registration_password)"
         if [ -z "$password" ]; then
-                password="$DEFAULT_WAZUH_REGISTRATION_PASSWORD"
+                password="$default_wazuh_registration_password"
                 set_wazuh_registration_password $password
         fi
         echo "$password"
@@ -32,5 +32,5 @@ wazuh_registration_password()
 set_wazuh_registration_password()
 {
         echo "Inside set_wazuh_registration_password with parameter: $1"
-        snapctl set WAZUH_REGISTRATION_PASSWORD="$1"
+        snapctl set wazuh_registration_password="$1"
 }

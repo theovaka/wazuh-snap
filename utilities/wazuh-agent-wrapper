@@ -1,6 +1,6 @@
 #!/bin/sh
 # source the management script
-. "$SNAP/bin/management-script"
+. "$SNAP/management-script"
 
 # Call the function wazuh_manager from the management script
 wazuh_manager="$(get_wazuh_manager)"

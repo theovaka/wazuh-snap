@@ -44,8 +44,8 @@ parts:
     # source: src/utilities
     source: utilities/
     source-type: local
-    organize:
-        bin/: utilities/
+    # organize:
+    #     bin/: utilities/
 
   # configure-hook:
   #   plugin: dump
